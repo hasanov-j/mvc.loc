@@ -49,8 +49,7 @@
         ]
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.23",
-        "phpstan/phpstan": "^1.10"
+        "friendsofphp/php-cs-fixer": "^3.23"
     },
     "require": {
         "ramsey/uuid": "^4.7"
