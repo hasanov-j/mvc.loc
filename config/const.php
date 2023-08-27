@@ -12,3 +12,4 @@ define('CONTROLLERS_ROOT', ROOT.'/app/Controllers/'); // папка с допо�
 define('VIEW_ROOT', ROOT.'/views/'); // папка с дополнениями для сайта
 define('MODELS_ROOT', ROOT.'/app/models/'); // папка с моделями для системы
 define('TEMPLATE_ROOT', '/template/'); // папка с дополнениями для сайта
+

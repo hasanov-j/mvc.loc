@@ -41,7 +41,7 @@ $config
         'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']], // one should use PHPUnit built-in method instead
         //'header_comment' => ['header' => $header],
         'modernize_strpos' => true, // needs PHP 8+ or polyfill
-        'no_useless_concat_operator' => false, // TODO switch back on when the `src/Console/Application.php` no longer needs the concat
+        'no_useless_concat_operator' => false, // TODO switch back on when the `src/ConsoleColorize/Application.php` no longer needs the concat
         'static_lambda' => true,
     ])
     ->setFinder($finder)
