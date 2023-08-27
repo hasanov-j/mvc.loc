@@ -2,56 +2,28 @@
 
 declare(strict_types=1);
 
-
-
-use App\Controllers\MainController;
-use App\Controllers\NewsController;
-use App\Controllers\UploadController;
-
 return [
-    //    'news\/(\d+)/comment\/(\d+)' => [
-    //        'GET' => [
-    //            'action' => 'show',
-    //            'controller' => NewsController::class,
-    //        ],
-    //    ],
 
-    'upload' => [
+    'test1' => [
         'GET' => [
-            'action' => 'show',
-            'controller' => UploadController::class,
+            'action' => 'action_name',
+            'controller' => "controller_name",
         ],
         'POST' => [
-            'action' => 'save',
-            'controller' => UploadController::class,
+            'action' => 'action_name',
+            'controller' => "controller_name",
         ],
     ],
-    'upload-remove' => [
+
+    'test2' => [
         'POST' => [
-            'action' => 'remove',
-            'controller' => UploadController::class,
+            'action' => 'action_name',
+            'controller' => 'controller_name',
         ],
         'GET' => [
-            'action' => 'showRemoveForm',
-            'controller' => UploadController::class,
+            'action' => 'action_name',
+            'controller' => 'controller_name',
         ],
     ],
-    'news' => [
-        'GET' => [
-            'action' => 'index',
-            'controller' => NewsController::class,
-        ],
-    ],
-    'news\/([0-9]+)' => [
-        'GET' => [
-            'action' => 'show',
-            'controller' => NewsController::class,
-        ],
-    ],
-    '' => [
-        'GET' => [
-            'action' => 'index',
-            'controller' => MainController::class,
-        ],
-    ],
+
 ];
