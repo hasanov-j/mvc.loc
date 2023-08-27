@@ -36,17 +36,19 @@ class ConsoleColorize
 
     public static function print($text, $color = self::DEFAULT) : void
     {
+        $result = $text;
+
         if (in_array($color, self::COLOR_VALUES)) {
 
             switch ($color) {
-                case self::RED: echo $color . 'ERROR: '.$text . self::DEFAULT; break;
-                case self::GREEN: echo $color . 'SUCCESS: '.$text . self::DEFAULT;break;
-                case self::YELLOW: echo $color . 'WARNING: '.$text . self::DEFAULT;break;
-                case self::BLUE: echo $color . 'IN PROGRESS: '.$text . self::DEFAULT;break;
+                case self::RED: $result = $color . 'ERROR: '. $text . self::DEFAULT; break;
+                case self::GREEN: $result = $color . 'SUCCESS: '.$text . self::DEFAULT;break;
+                case self::YELLOW: $result = $color . 'WARNING: '.$text . self::DEFAULT;break;
+                case self::BLUE: $result = $color . 'IN PROGRESS: '.$text . self::DEFAULT;break;
             }
 
-        } else {
-            echo $text;
         }
+
+        echo $result . "\n";
     }
 }

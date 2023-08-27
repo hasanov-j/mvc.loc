@@ -20,22 +20,39 @@
     },
     "scripts": {
         "cs-fix": "vendor/bin/php-cs-fixer fix",
-        "testss": "App\\Console\\Commands\\TestConsoleCommand::test",
-        "m:users": "App\\Migrations\\CreateTestTable::up",
-        "s:users": "App\\Seed\\UserSeed::up"
+        "m:users:up": "App\\Migrations\\CreateUsersTable::up",
+        "m:users:down": "App\\Migrations\\CreateUsersTable::down",
+
+        "s:users:up": "App\\Seed\\UserSeed::up",
+        "s:users:down": "App\\Seed\\UserSeed::down",
+
+        "p-init": [
+            "@php -r \"file_exists('config/db_params.php') || copy('config/db_params.example', 'config/db_params.php');\"",
+            "@composer migrate",
+            "@composer seed"
+        ],
+        "migrate": [
+            "@composer m:users:up"
+        ],
+        "migrate-down": [
+            "@composer m:users:down"
+        ],
+        "seed": [
+            "@composer s:users:up"
+        ],
+        "seed-down": [
+            "@composer s:users:down"
+        ],
+        "down": [
+            "@composer seed-down",
+            "@composer migrate-down"
+        ]
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.23",
         "phpstan/phpstan": "^1.10"
     },
     "require": {
-        "hasanov-j/currency": "dev-main",
-        "hasanov-j/hidden-package": "dev-main"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:hasanov-j/hidden-package.git"
-        }
-    ]
+        "ramsey/uuid": "^4.7"
+    }
 }

@@ -6,7 +6,7 @@ use App\Components\ConsoleColorize;
 use App\Components\Database;
 use App\Components\Migration;
 
-class CreateTestTable extends Migration implements MigrationInterface
+class CreateUsersTable extends Migration implements MigrationInterface
 {
     const TABLE_NAME = 'users';
 
@@ -23,6 +23,7 @@ class CreateTestTable extends Migration implements MigrationInterface
 
         $sql = "CREATE TABLE " . self::TABLE_NAME . "(
                 id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                uuid VARCHAR(255),
                 firstname VARCHAR(30),
                 lastname VARCHAR(30),
                 age INTEGER,
@@ -51,14 +52,6 @@ class CreateTestTable extends Migration implements MigrationInterface
 
     public static function down()
     {
-//        if (self::tableExits(self::TABLE_NAME)) {
-//            //TODO: скрипт по удалению таблицы
-//            $db = Database::getConnection();
-//
-//            $sql = "DROP TABLE" . self::TABLE_NAME;
-//            $result = $db->query($sql);
-//        } else {
-//            echo "Table has deleted already";
-//        }
+        self::tableDelete(tableName: self::TABLE_NAME);
     }
 }
