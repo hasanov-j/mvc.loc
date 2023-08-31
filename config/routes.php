@@ -2,28 +2,43 @@
 
 declare(strict_types=1);
 
+use App\Controllers\FeedbackController;
+use App\Controllers\SliderController;
+
 return [
 
-    'test1' => [
-        'GET' => [
-            'action' => 'action_name',
-            'controller' => "controller_name",
-        ],
-        'POST' => [
-            'action' => 'action_name',
-            'controller' => "controller_name",
+    'sliders/([a-z0-9\-]+)'=>[
+        'DELETE'=>[
+            'action' => 'destroy',
+            'controller' => SliderController::class,
         ],
     ],
 
-    'test2' => [
-        'POST' => [
-            'action' => 'action_name',
-            'controller' => 'controller_name',
-        ],
+    'sliders' => [
+
         'GET' => [
-            'action' => 'action_name',
-            'controller' => 'controller_name',
+            'action' => 'index',
+            'controller' => SliderController::class,
         ],
+
+        'POST' => [
+            'action' => 'store',
+            'controller' => SliderController::class,
+        ],
+    ],
+
+    'feedback' => [
+
+        'GET' => [
+            'action' => 'index',
+            'controller' => FeedbackController::class,
+        ],
+
+        'POST' => [
+            'action' => 'store',
+            'controller' => FeedbackController::class,
+        ],
+
     ],
 
 ];

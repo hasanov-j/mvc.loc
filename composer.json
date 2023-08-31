@@ -20,11 +20,15 @@
     },
     "scripts": {
         "cs-fix": "vendor/bin/php-cs-fixer fix",
-        "m:users:up": "App\\Migrations\\CreateUsersTable::up",
-        "m:users:down": "App\\Migrations\\CreateUsersTable::down",
+        "m:feedbacks:up": "App\\Migrations\\CreateFeedbacksTable::up",
+        "m:feedbacks:down": "App\\Migrations\\CreateFeedbacksTable::down",
+        "m:sliders:up": "App\\Migrations\\CreateSlidersTable::up",
+        "m:sliders:down": "App\\Migrations\\CreateSlidersTable::down",
 
-        "s:users:up": "App\\Seed\\UserSeed::up",
-        "s:users:down": "App\\Seed\\UserSeed::down",
+        "s:feedbacks:up": "App\\Seed\\FeedbacksSeed::up",
+        "s:feedbacks:down": "App\\Seed\\FeedbacksSeed::down",
+        "s:sliders:up": "App\\Migrations\\SlidersSeed:up",
+        "s:sliders:down": "App\\Migrations\\SlidersSeed::down",
 
         "p-init": [
             "@php -r \"file_exists('config/db_params.php') || copy('config/db_params.example', 'config/db_params.php');\"",
@@ -32,16 +36,20 @@
             "@composer seed"
         ],
         "migrate": [
-            "@composer m:users:up"
+            "@composer m:feedbacks:up",
+            "@composer m:sliders:up"
         ],
         "migrate-down": [
-            "@composer m:users:down"
+            "@composer m:feedbacks:down",
+            "@composer m:sliders:down"
         ],
         "seed": [
-            "@composer s:users:up"
+            "@composer s:feedbacks:up",
+            "@composer s:sliders:up"
         ],
         "seed-down": [
-            "@composer s:users:down"
+            "@composer s:feedbacks:down",
+            "@composer s:sliders:down"
         ],
         "down": [
             "@composer seed-down",
@@ -49,8 +57,7 @@
         ]
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.23",
-        "phpstan/phpstan": "^1.10"
+        "friendsofphp/php-cs-fixer": "^3.23"
     },
     "require": {
         "ramsey/uuid": "^4.7"

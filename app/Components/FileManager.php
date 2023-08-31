@@ -2,21 +2,11 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace App\Components;
 
 class FileManager
 {
-    public static function upload(array $globalFileInfo, string $filename = null, string $path = UPLOAD_ROOT): bool
+    public static function upload(array $globalFileInfo, string $filename = null, string $path = UPLOAD_ROOT): string
     {
         $extention = pathinfo($globalFileInfo['name'], PATHINFO_EXTENSION);
 
@@ -24,14 +14,14 @@ class FileManager
             $filename = uniqid();
         }
 
-        if (move_uploaded_file($globalFileInfo['tmp_name'], $path.$filename.'.'.$extention)) {
-            return true;
+        if (move_uploaded_file($globalFileInfo['tmp_name'], $path. $filename. '.' .$extention)) {
+            return "/upload/". $filename. '.' .$extention;
         }
 
         return throw new Exception('Something going wrong');
     }
 
-    public static function remove(string $filename, string $path = UPLOAD_ROOT): bool
+    public static function remove(string $filename=null, string $path = ROOT): bool
     {
         $fullFilePath = $path.$filename;
 

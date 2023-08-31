@@ -31,14 +31,14 @@ class Migration
 
         $sql = "DROP TABLE " . $tableName;
 
-        $message = "table deleted successfully";
+        $message = "table ". $tableName ." deleted successfully";
 
         try {
             if (self::tableExits($tableName)) {
                 $result = $db->query($sql);
-                ConsoleColorize::print("table deleting", ConsoleColorize::BLUE);
+                ConsoleColorize::print("table ". $tableName ." deleting", ConsoleColorize::BLUE);
             } else {
-                ConsoleColorize::print("table already deleted", ConsoleColorize::BLUE);
+                ConsoleColorize::print("table". $tableName ."already deleted", ConsoleColorize::BLUE);
             }
 
         } catch (\PDOException $e) {
