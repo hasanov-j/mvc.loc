@@ -2,16 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace App\Components;
 
 class Router
@@ -43,7 +33,6 @@ class Router
 
                         // Исключаем первый элемент, который содержит полные совпадения
                         array_shift($parameters);
-
                         $controllerObject = new $controllerName();
 
                         //                        if(call_user_func_array([$controllerObject, $actionName], $parameters)==null){

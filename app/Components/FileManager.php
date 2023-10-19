@@ -16,24 +16,25 @@ namespace App\Components;
 
 class FileManager
 {
-    public static function upload(array $globalFileInfo, string $filename = null, string $path = UPLOAD_ROOT): bool
+    public static function upload(array $globalFileInfo, string $filename = null, string $path = AVATARS_ROOT): string
     {
         $extention = pathinfo($globalFileInfo['name'], PATHINFO_EXTENSION);
 
         if (null === $filename) {
             $filename = uniqid();
         }
+        $avatarPath = $path . $filename . '.' . $extention;
 
-        if (move_uploaded_file($globalFileInfo['tmp_name'], $path.$filename.'.'.$extention)) {
-            return true;
+        if (move_uploaded_file($globalFileInfo['tmp_name'], ROOT. $avatarPath)) {
+            return $avatarPath;
         }
 
         return throw new Exception('Something going wrong');
     }
 
-    public static function remove(string $filename, string $path = UPLOAD_ROOT): bool
+    public static function remove(string $filename, string $path = IMAGES_ROOT): bool
     {
-        $fullFilePath = $path.$filename;
+        $fullFilePath = $path . $filename;
 
         if (!file_exists($fullFilePath)) {
             throw new Exception('File not found', 500);

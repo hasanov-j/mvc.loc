@@ -10,7 +10,7 @@ class Migration
 
         $sql = "SHOW TABLES LIKE '$tableName'";
 
-        $message = "SHOW TABLES LIKE '$tableName";
+        $message = "SHOW TABLES LIKE '$tableName'";
 
         try {
             $result = $db->query($sql);
@@ -22,7 +22,7 @@ class Migration
 
         ConsoleColorize::print($message, ConsoleColorize::GREEN);
 
-        return $result->rowCount() > 0 ? true : false;
+        return $result->rowCount() > 0;
     }
 
     public static function tableDelete(string $tableName): void
@@ -31,14 +31,21 @@ class Migration
 
         $sql = "DROP TABLE " . $tableName;
 
-        $message = "table deleted successfully";
+        $message = "table ". $tableName. " deleted successfully";
 
         try {
             if (self::tableExits($tableName)) {
                 $result = $db->query($sql);
-                ConsoleColorize::print("table deleting", ConsoleColorize::BLUE);
+                ConsoleColorize::print(
+                    text: "table ". $tableName. " deleting",
+                    color: ConsoleColorize::BLUE
+                );
             } else {
-                ConsoleColorize::print("table already deleted", ConsoleColorize::BLUE);
+                ConsoleColorize::print(
+                    text: "table ". $tableName. " already deleted",
+                    color: ConsoleColorize::RED
+                );
+                die;
             }
 
         } catch (\PDOException $e) {

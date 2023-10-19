@@ -8,5 +8,7 @@ require 'vendor\\autoload.php';
 
 require_once 'config\const.php';
 
+//var_dump();die;
+
 $router = new \App\Components\Router();
 $router->run();

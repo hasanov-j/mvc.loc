@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #222831; /* Цвет фона */
+    font-family: Arial, sans-serif;
+}
+
+.confirmation-title {
+    font-size: 24px;
+    color: #ffffff; /* Цвет текста */
+    margin-top: 20px;
+}
+
+.confirmation-message {
+    font-size: 18px;
+    color: #cccccc; /* Цвет текста */
+    margin-top: 10px;
+}
+
+.confirmation-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}

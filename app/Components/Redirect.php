@@ -12,6 +12,17 @@ class Redirect
         header("Location: {$referer}");
     }
 
+    public static function main(): void
+    {
+        header("Location: /");
+    }
+
+    public static function orderAccess(): void
+    {
+        http_response_code(201);
+        require_once VIEW_ROOT. 'shopping-cart/order-access.php';
+    }
+
     public static function byStatusCode(int $statusCode): void
     {
         switch ($statusCode) {
@@ -25,6 +36,7 @@ class Redirect
                 break;
 
             case 403:
+                http_response_code(403);
                 require_once VIEW_ROOT.'error_pages/403.php';
 
                 exit;
@@ -32,6 +44,8 @@ class Redirect
                 break;
 
             default:
+                http_response_code(500);
+
                 require_once VIEW_ROOT.'error_pages/500.php';
 
                 exit;
