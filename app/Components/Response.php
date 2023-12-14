@@ -28,8 +28,8 @@ class Response
 
     public static function json(?array $content = null, int $status= 200, string $type = self::RESPONSE_SUCCESS_TYPE, ?string $message = null):void
     {
-        http_response_code($status);
-        header('Content-Type: application/json');
+//        http_response_code($status);
+//        header('Content-Type: application/json');
 
         $response = [];
 

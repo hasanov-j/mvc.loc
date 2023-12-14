@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require 'vendor\\autoload.php';
+require "vendor".DIRECTORY_SEPARATOR."autoload.php";
 
 use App\Components\MyWorkerman;
 use Workerman\Worker;

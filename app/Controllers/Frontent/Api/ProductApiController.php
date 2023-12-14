@@ -12,6 +12,7 @@ class ProductApiController
 {
     public function index(): void
     {
+        //var_dump($_SERVER['REQUEST_URI']);
         $categoryId=null;
 
         if(array_key_exists('categoryId',Request::getContent())){
@@ -25,7 +26,6 @@ class ProductApiController
         }catch (ModelNotFoundException $exception){
             Response::json(status: 404, type: Response::RESPONSE_ERROR_TYPE, message: "Products by category id - {$categoryId} not found");die;
         }
-
 
         Response::json(
             [

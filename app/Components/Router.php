@@ -17,6 +17,7 @@ class Router
     public function run(): void
     {
         $uri = $this->getURI();
+        //var_dump($uri);
 
         foreach ($this->routes as $uriPattern => $routeData) {
             if (preg_match("~^{$uriPattern}$~", $uri)) {

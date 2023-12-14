@@ -150,17 +150,15 @@ Vue.component('book-store', {
                             />
                         </div>
                          
-                        <div v-if="isButtonDisabled" class="btn_box">
-                            <button @click="sendFormData">
-                               Отправить
+                        <div class="btn_box">
+                            <button @click="sendFormData" 
+                                    :disabled="isButtonDisabled" 
+                                    :style="{ 'background-color': isButtonDisabled ? 'gray' : '' }"
+                            >
+                                Отправить
                             </button>
                         </div>
-                        
-                        <div v-else class="btn_box">
-                            <button disabled style="background-color:gray">
-                               Отправить
-                            </button>
-                        </div>
+
                        
                 
                 </div>
@@ -439,10 +437,12 @@ Vue.component('product-view', {
         axios.get(
             '/api/products',
         ).then(response => {
+            console.log(response.data
+            );
             this.dishes = response.data.data.dishes;
             this.categories = response.data.data.categories;
-
-            //console.log(this.dishes);
+        }).catch(error => {
+            console.error('Error fetching data:', error);
         });
 
     },

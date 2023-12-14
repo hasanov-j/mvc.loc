@@ -166,9 +166,6 @@
     },
     "require": {
         "ramsey/uuid": "^4.7",
-      "ext-pdo": "*",
-        "workerman/workerman": "^4.1",
-      "ext-pthreads": "*",
-      "ext-cassandra": "*"
+        "workerman/workerman": "^4.1"
     }
 }

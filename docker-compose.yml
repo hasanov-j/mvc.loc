@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+
+  #MySQL Service
+  mvc_loc_db:
+    image: mysql:8.0
+    container_name: mvc_loc_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "33061:3306"
+    environment:
+      MYSQL_DATABASE: restaurant
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    networks:
+      - mvc-loc-network
+    volumes:
+      - ./tmp/mysql:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+  #PHP Service
+  mvc_loc_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: mvc_loc_app
+    working_dir: /var/www
+    tty: true
+    networks:
+      - mvc-loc-network
+    volumes:
+      - ./:/var/www
+      - ./_docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - mvc_loc_db
+    #command: php webSocketServer.php start -d;
+
+
+  #WebSocket Service
+#  mvc_loc_websocket:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    container_name: mvc_loc_websocket
+#    working_dir: /var/www
+#    ports:
+#      - "23461:23461"
+#    tty: true
+#    networks:
+#      - mvc-loc-network
+#    volumes:
+#      - ./:/var/www
+#      - ./_docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini
+#    depends_on:
+#      - mvc_loc_db
+#    command: php webSocketServer start;
+
+  #Nginx Service
+  mvc_loc_webserver:
+    image: nginx:alpine
+    container_name: mvc_loc_webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "7777:80"
+    networks:
+      - mvc-loc-network
+    volumes:
+      - ./:/var/www
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - mvc_loc_app
+
+
+#Docker Networks
+networks:
+  mvc-loc-network:
+    driver: bridge

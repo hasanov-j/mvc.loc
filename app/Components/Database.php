@@ -21,6 +21,7 @@ class Database
 
         $params = include $paramsPath;
 
+
         // PDO
         if (null === self::$pdoObject) {
 
@@ -34,6 +35,7 @@ class Database
                 ConsoleColorize::print($e->getMessage(), ConsoleColorize::RED);
                 die;
             } catch (\Exception $e) {
+
                 ConsoleColorize::print($e->getMessage(), ConsoleColorize::RED);
                 die;
             }
